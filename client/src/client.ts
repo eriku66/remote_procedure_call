@@ -15,15 +15,16 @@ clientSocket.connect({ port: serverPort }, () => {
 	const dataToSend = {
 		method: args[2],
 		params: args.slice(3),
-		// params_types: ["int", "int"],
-		id: 1,
 	};
 
 	clientSocket.write(JSON.stringify(dataToSend));
 });
 
 clientSocket.addListener("data", (data) => {
-	console.log(`Received : ${data}`);
+	const response = JSON.parse(data.toString());
+	console.log(`Received result: ${response.result}`);
+	clientSocket.end();
+	return;
 });
 
 clientSocket.on("error", (error) => {

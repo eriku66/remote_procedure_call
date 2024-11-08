@@ -2,6 +2,8 @@ import json
 import threading
 
 from client_handler import ClientHandler
+from request_handler import get_request_handler
+from response_handler import get_response_handler
 from socket_server import SocketServer
 
 
@@ -13,7 +15,7 @@ def main():
     socket_server = SocketServer(port=server_port)
     socket_server.bind()
 
-    client_handler = ClientHandler()
+    client_handler = ClientHandler(get_request_handler(), get_response_handler())
 
     while True:
         client_socket = socket_server.accept()
