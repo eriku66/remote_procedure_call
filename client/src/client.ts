@@ -10,7 +10,6 @@ const args = process.argv;
 
 clientSocket.connect({ port: serverPort }, () => {
 	console.log(`Connect to port: ${serverPort}`);
-	console.log(args);
 
 	const dataToSend = {
 		method: args[2],
@@ -22,8 +21,15 @@ clientSocket.connect({ port: serverPort }, () => {
 
 clientSocket.addListener("data", (data) => {
 	const response = JSON.parse(data.toString());
-	console.log(`Received result: ${response.result}`);
+
+	if (Object.prototype.hasOwnProperty.call(response, "error")) {
+		console.error(`Received error: ${response.error}`);
+	} else if (Object.prototype.hasOwnProperty.call(response, "result")) {
+		console.log(`Received result: ${response.result}`);
+	}
+
 	clientSocket.end();
+
 	return;
 });
 

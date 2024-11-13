@@ -21,7 +21,7 @@ class RequestHandler:
 _request_handler = None
 
 
-def get_request_handler():
+def get_request_handler() -> RequestHandler:
     global _request_handler
 
     if _request_handler is None:
