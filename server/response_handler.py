@@ -10,7 +10,7 @@ class ResponseHandler:
 _response_handler = None
 
 
-def get_response_handler():
+def get_response_handler() -> ResponseHandler:
     global _response_handler
 
     if _response_handler is None:
