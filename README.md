@@ -8,10 +8,10 @@
 python server.py
 ```
 
-クライアントからリクエスト
+サーバにリクエストを送信
 
 ``` bash
-node dist/client/src/client.js <関数名> <パラメータ>
+node client.js <関数名> <パラメータ>
 ```
 
 使用できる関数
